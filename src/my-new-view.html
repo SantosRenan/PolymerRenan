@@ -1,10 +1,10 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/paper-slider/paper-slider.html">
-
+<link rel="import" href="../bower_components/facebook-login/facebook-login.html">
 
 <dom-module id="my-new-view">
   <!-- Defines the element's style and local DOM -->
-  <template>
+  <template is="dom-bind">
     <style>
       :host {
         display: block;
@@ -15,6 +15,18 @@
 
     <h1>New view do Renan</h1>
     <paper-slider min="-100" max="100" value="20"></paper-slider>
+    <facebook-login
+          appID="743333545708443"
+          logout-link graph-url="me?fields=name,email,birthday"
+          scope="public_profile email user_birthday"
+          graph-response="{{resp}}"
+          auto-api-call></facebook-login>
+
+      <div style="margin-top: 20px">
+        <span>[[resp.name]]</span>
+        <div>[[resp.email]]</div>
+        <div>[[resp.birthday]]</div>
+      </div>
   </template>
   <!-- Creates the element's prototype and registers it -->
   <script>
